@@ -1,0 +1,38 @@
+CREATE DATABASE inventory_db;
+USE inventory_db;
+CREATE TABLE Products (
+product_id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(100) NOT NULL,
+quantity INT NOT NULL,
+price DECIMAL(10, 2) NOT NULL
+);
+CREATE TABLE Suppliers (
+supplier_id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(100) NOT NULL,
+contact VARCHAR(100)
+);
+CREATE TABLE Orders (
+order_id INT AUTO_INCREMENT PRIMARY KEY,
+product_id INT,
+supplier_id INT,
+order_date DATE,
+quantity INT,
+FOREIGN KEY (product_id) REFERENCES Products(product_id),
+FOREIGN KEY (supplier_id) REFERENCES Suppliers(supplier_id)
+);
+CREATE TABLE Customers (
+customer_id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(100) NOT NULL,
+contact VARCHAR(100)
+25
+);
+CREATE TABLE Sales (
+sale_id INT AUTO_INCREMENT PRIMARY KEY,
+product_id INT,
+customer_id INT,
+sale_date DATE,
+quantity INT,
+total_price DECIMAL(10, 2),
+FOREIGN KEY (product_id) REFERENCES Products(product_id),
+FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
+);
